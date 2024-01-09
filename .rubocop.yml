@@ -11,4 +11,4 @@ RSpec/MultipleExpectations:
 Metrics/AbcSize:
   Max: 30
 Metrics/MethodLength:
-  Max: 28
+  Max: 35

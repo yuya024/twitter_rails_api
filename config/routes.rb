@@ -9,6 +9,9 @@ Rails.application.routes.draw do
       namespace :users do
         resources :sessions, only: %i[index]
       end
+
+      resources :tweets, only: %i[create]
+      resources :images, only: %i[create]
     end
   end
 
