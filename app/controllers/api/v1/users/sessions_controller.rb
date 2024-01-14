@@ -3,13 +3,12 @@
 module Api
   module V1
     module Users
-      class SessionsController < ApplicationController
-        def index
-          if current_api_v1_user
-            render json: { is_login: true, data: current_api_v1_user }
-          else
-            render json: { is_login: false, message: 'ユーザーが存在しません' }
-          end
+      class SessionsController < DeviseTokenAuth::SessionsController
+        def create
+          super
+          hash = JSON.parse(response.body)
+          hash['data']['profile_image_url'] = @resource.profile_image_url
+          response.body = hash.to_json
         end
       end
     end
