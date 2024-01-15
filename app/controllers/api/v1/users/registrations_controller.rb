@@ -4,6 +4,11 @@ module Api
   module V1
     module Users
       class RegistrationsController < DeviseTokenAuth::RegistrationsController
+        def create
+          super
+          @resource.setup_default_image
+        end
+
         private
 
         def sign_up_params
