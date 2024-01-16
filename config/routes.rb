@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         resources :session_infos, only: %i[index]
       end
 
-      resources :tweets, only: %i[index create]
+      resources :tweets, only: %i[index create show]
       resources :images, only: %i[create]
     end
   end
