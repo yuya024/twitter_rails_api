@@ -22,4 +22,8 @@ class User < ApplicationRecord
   def profile_image_url
     profile_image.attached? ? url_for(profile_image) : nil
   end
+
+  def header_image_url
+    header_image.attached? ? url_for(header_image) : nil
+  end
 end
