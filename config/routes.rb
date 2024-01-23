@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
       resources :users, only: %i[show]
       resources :tweets, only: %i[index create show destroy]
+      resources :comments, only: %i[create]
       resources :images, only: %i[create]
       resource :profile, only: %i[update]
     end
