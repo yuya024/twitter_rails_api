@@ -28,6 +28,16 @@ module Api
         end
       end
 
+      def destroy
+        tweet = Tweet.find(params[:id])
+        if tweet.destroy
+          tweets = current_api_v1_user.tweets.page(1).per(10).order(created_at: :desc)
+          render json: { tweets: tweets.as_json(methods: :image_url), pagination: resources_with_pagination(tweets) }
+        else
+          render json: { error: '投稿の削除に失敗しました' }
+        end
+      end
+
       private
 
       def tweet_params
