@@ -14,11 +14,6 @@ module Api
         }
       end
 
-      def show
-        tweet = Tweet.find(params[:id])
-        render json: { data: tweet.as_json(methods: :image_url, include: { user: { only: :name, methods: :profile_image_url } }) }
-      end
-
       def create
         tweet = current_api_v1_user.tweets.new(tweet_params)
         if tweet.save
