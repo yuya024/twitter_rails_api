@@ -5,6 +5,18 @@ module Api
     class CommentsController < ApplicationController
       include Pagination
 
+      def index
+        tweet = Tweet.find(params[:tweet_id])
+        comments = Comment.where(tweet_id: params[:tweet_id]).page(params[:page] || 1).per(10).order(created_at: :desc)
+        render json: {
+          tweet: tweet.as_json(methods: %i[image_url comment_count],
+                               include: { user: { only: :name,
+                                                  methods: :profile_image_url } }),
+          comments: comments.as_json(include: { user: { only: :name, methods: :profile_image_url } }),
+          pagination: resources_with_pagination(comments)
+        }
+      end
+
       def create
         comment = current_api_v1_user.comments.new(comment_params)
         if comment.save
