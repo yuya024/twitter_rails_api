@@ -23,4 +23,8 @@ content = ['今日は暑い！', '今日は寒い！', '今日は涼しいな！
 
   user.tweets.create!(content: content.sample)
   user.tweets.create!(content: content.sample)
+  if user.id != 1
+    user.comments.create!(tweet_id: n, content: content.sample)
+    user.comments.create!(tweet_id: n, content: content.sample)
+  end
 end
