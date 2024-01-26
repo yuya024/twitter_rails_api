@@ -29,6 +29,15 @@ module Api
         end
       end
 
+      def destroy
+        comment = Comment.find(params[:id])
+        if comment.destroy
+          render json: { comment: }
+        else
+          render json: { error: 'コメントの削除に失敗しました' }
+        end
+      end
+
       private
 
       def comment_params
