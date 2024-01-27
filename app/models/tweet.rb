@@ -5,6 +5,7 @@ class Tweet < ApplicationRecord
 
   belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many :retweets, dependent: :destroy
   has_one_attached :image
 
   def image_url
@@ -13,5 +14,13 @@ class Tweet < ApplicationRecord
 
   def comment_count
     comments.count
+  end
+
+  def retweet_count
+    retweets.count
+  end
+
+  def retweeted_by
+    retweets.exists?(user_id: $current_api_v1_user.id)
   end
 end
