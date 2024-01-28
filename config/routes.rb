@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       resources :tweets, only: %i[index create destroy] do
         resources :comments, only: %i[index]
         resource :retweets, only: %i[create]
+        resource :favorites, only: %i[create]
       end
       resources :comments, only: %i[create destroy]
       resources :images, only: %i[create]
