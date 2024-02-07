@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       end
       resources :comments, only: %i[create destroy]
       resources :images, only: %i[create]
+      resources :notifications, only: %i[index]
       resource :profile, only: %i[update]
     end
   end
