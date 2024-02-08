@@ -20,6 +20,9 @@ Rails.application.routes.draw do
         resource :retweets, only: %i[create]
         resource :favorites, only: %i[create]
       end
+      resources :groups, only: %i[index create] do
+        resources :messages, only: %i[index create]
+      end
       resources :comments, only: %i[create destroy]
       resources :images, only: %i[create]
       resources :notifications, only: %i[index]

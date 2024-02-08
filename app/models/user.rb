@@ -17,6 +17,8 @@ class User < ApplicationRecord
   has_many :followings, through: :follower, source: :followed
   has_many :followers, through: :followed, source: :follower
   has_many :notifications, dependent: :destroy
+  has_many :user_groups, dependent: :destroy
+  has_many :messages, dependent: :destroy
   has_one_attached :profile_image
   has_one_attached :header_image
 
