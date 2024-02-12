@@ -8,7 +8,8 @@ module Api
       def index
         tweets = Tweet.page(params[:page] || 1).per(10).order(created_at: :desc)
         render json: {
-          data: tweets.as_json(methods: %i[image_url comment_count retweet_count favorite_count retweeted_by favorited_by],
+          data: tweets.as_json(methods: %i[image_url comment_count retweet_count favorite_count
+                                           retweeted_by favorited_by bookmarked_by login_user_bookmark],
                                include: { user: { only: :name,
                                                   methods: :profile_image_url } }), pagination: resources_with_pagination(tweets)
         }

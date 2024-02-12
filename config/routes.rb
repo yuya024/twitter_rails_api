@@ -26,6 +26,10 @@ Rails.application.routes.draw do
       resources :comments, only: %i[create destroy]
       resources :images, only: %i[create]
       resources :notifications, only: %i[index]
+      resources :bookmarks, only: %i[index create destroy]
+      resources :folders, only: %i[index create destroy] do
+        resources :bookmark_folders, only: %i[index create]
+      end
       resource :profile, only: %i[update]
     end
   end
