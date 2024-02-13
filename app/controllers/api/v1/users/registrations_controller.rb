@@ -9,6 +9,13 @@ module Api
           @resource.setup_default_image
         end
 
+        def destroy
+          group_ids = @resource.user_groups.pluck(:group_id)
+          groups = Group.where(id: group_ids)
+          groups.each(&:destroy!)
+          super
+        end
+
         private
 
         def sign_up_params
